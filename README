@@ -1,0 +1,18 @@
+Different header versions define the same function template
+
+template <typename T>
+std::string to_text(std::uint8_t const* bytes, std::size_t size)
+
+that should behave identically and only differ in implementation
+details.
+
+Given a particular type substituted for T, the function should
+deserialize an object of type T from raw bytes and re-serialize
+it into a string.
+
+Specific conversions should be defined separately for each type.
+Currently std::uint64_t and std::string are taken as an example.
+
+If no conversion is defined for a type T, the function template
+should fall back to a base case that returns a predefined value
+"[unknown_type]".
