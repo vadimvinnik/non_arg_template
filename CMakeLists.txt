@@ -7,7 +7,7 @@ conan_basic_setup(NO_OUTPUT_DIRS TARGETS)
 enable_testing()
 
 add_subdirectory(common)
-add_subdirectory(
-  tests
-  )
+add_subdirectory(tests)
+add_subdirectory(v03)
+add_subdirectory(v04)
 

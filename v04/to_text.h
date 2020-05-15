@@ -6,6 +6,9 @@
 #include <string>
 #include <type_traits>
 
+namespace v04
+{
+
 // general definition:
 // only fall back to it if there is
 // no matching explicit specialisation
@@ -18,16 +21,10 @@ std::string to_text(std::uint8_t const*, std::size_t)
 // specialisations: one per each type
 
 template <>
-std::string to_text<std::uint64_t>(std::uint8_t const* bytes, std::size_t size)
-{
-  auto const value = binary_conversion::to_uint64(bytes, size);
-  return "[uint64: " + std::to_string(value) + "]";
-}
+std::string to_text<std::uint64_t>(std::uint8_t const* bytes, std::size_t size);
 
 template <>
-std::string to_text<std::string>(std::uint8_t const* bytes, std::size_t size)
-{
-  auto const value = binary_conversion::to_string(bytes, size);
-  return "[string: " + value + "]";
-}
+std::string to_text<std::string>(std::uint8_t const* bytes, std::size_t size);
+
+} // namespace v04
 

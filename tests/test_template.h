@@ -7,19 +7,22 @@
 
 #include <catch.hpp>
 
-TEST_CASE(HEADER_VERSION_STRING ": std::uint64_t") {
+#define QUOTE(str) #str
+#define EXPAND_AND_QUOTE(str) QUOTE(str)
+
+TEST_CASE(EXPAND_AND_QUOTE(HEADER_VERSION) ": std::uint64_t") {
   constexpr uint8_t raw[] { 0x04, 0x00 };
-  CHECK(to_text<std::uint64_t>(raw, sizeof(raw)) == "[uint64: 1024]");
+  CHECK(HEADER_VERSION::to_text<std::uint64_t>(raw, sizeof(raw)) == "[uint64: 1024]");
 }
 
-TEST_CASE(HEADER_VERSION_STRING "std::string") {
+TEST_CASE(EXPAND_AND_QUOTE(HEADER_VERSION) "std::string") {
   constexpr uint8_t raw[] { 'a', 'b', 'c', 'd' };
-  CHECK(to_text<std::string>(raw, sizeof(raw)) == "[string: abcd]");
+  CHECK(HEADER_VERSION::to_text<std::string>(raw, sizeof(raw)) == "[string: abcd]");
 }
 
-TEST_CASE(HEADER_VERSION_STRING "custom type") {
+TEST_CASE(EXPAND_AND_QUOTE(HEADER_VERSION) "custom type") {
   struct dummy { int data; };
   constexpr uint8_t raw[] { 'a', 'b', 'c', 'd' };
-  CHECK(to_text<dummy>(raw, sizeof(raw)) == "[unknown_type]");
+  CHECK(HEADER_VERSION::to_text<dummy>(raw, sizeof(raw)) == "[unknown_type]");
 }
 

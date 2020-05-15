@@ -6,6 +6,9 @@
 #include <string>
 #include <type_traits>
 
+namespace v01
+{
+
 // to make a function less preferable
 template <typename T>
 struct implicit_from
@@ -44,4 +47,6 @@ string_if_same<T, std::string>
   auto const value = binary_conversion::to_string(bytes, size);
   return "[string: " + value + "]";
 }
+
+} // namespace v01
 

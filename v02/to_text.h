@@ -5,6 +5,9 @@
 #include <cstdint>
 #include <string>
 
+namespace v02
+{
+
 // general definition:
 // only fall back to it if there is
 // no matching explicit specialisation
@@ -45,4 +48,6 @@ std::string to_text(std::uint8_t const* bytes, std::size_t size)
 {
   return to_text_helper<T>::to_text(bytes, size);
 }
+
+} // namespace v02
 

@@ -11,11 +11,22 @@ add_executable(${PROJECT_NAME}
   test_template.h
   )
 
-target_link_libraries(${PROJECT_NAME} CONAN_PKG::catch2)
-target_link_libraries(${PROJECT_NAME} common)
+target_link_libraries(
+  ${PROJECT_NAME}
+  CONAN_PKG::catch2
+  common
+  v03
+  v04
+  )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ../common) 
-target_include_directories(${PROJECT_NAME} PRIVATE ../v02) 
+target_include_directories(
+  ${PROJECT_NAME} PRIVATE
+  ../common
+  ../v01
+  ../v02
+  ../v03
+  ../v04
+  ) 
 
 add_test(
   NAME test_all
